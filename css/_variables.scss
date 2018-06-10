@@ -1,0 +1,31 @@
+$white: #ffffff;
+$black: #000000;
+$light-blue: #4a90e2;
+$dark-blue: #00408b;
+$main-bg: #e1e1e1;
+$item-y: #fff2dc;
+$item-g: #f2f2f2;
+$placeholder: #c8c8c8;
+$font-check: #9b9b9b;
+$note-gray: #757575;
+$cancel: #D0021B;
+$star: #F5A623;
+$bg-yellow: #FFF2DC;
+
+$justify-map: (
+  st: start,
+  cr: center,
+  ed: end,
+  bn: between,
+  ad: around
+);
+
+$align-map: (
+  st: start,
+  cr: center,
+  ed: end,
+  be: baseline,
+  sh: stretch
+);
+
+$direction-list: row column;

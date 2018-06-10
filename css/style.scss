@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500');
+@import 'variables';
+@import 'mixin';
+@import 'reset';
+// settings
+body {
+  @include fontStyle;
+}
+
+.d-flex {
+  display: flex;
+}
+
+@for $i from 1 through 12 {
+  .flex-#{$i} {
+    flex: $i;
+  }
+}
+
+@each $key, $value in $justify-map {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key, $value in $align-map {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+@each $value in $direction-list {
+  .flex-#{$value} {
+    flex-direction: $value;
+  }
+}
+
+// start
+.wrap {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.sort {
+  height: 76px;
+  background-color: $light-blue;
+  input[type='radio'] {
+    display: none;
+  }
+  label {
+    width: 160px;
+    height: 76px;
+    border: {
+      bottom: 5px solid transparent;
+    }
+    margin: 0 30px;
+    cursor: pointer;
+    @include fontStyle($dark-blue, 1.5rem, 400);
+    &:hover {
+      color: $placeholder;
+      border: {
+        bottom: 5px solid $dark-blue;
+      }
+      font: {
+        weight: 500;
+      }
+    }
+  }
+  input[type='radio']:checked+label {
+    color: $white;
+    font: {
+      weight: 500;
+    };
+  }
+}
+
+main{
+  background-color: $main-bg;
+  height: 1000px;
+  .container{
+    max-width: 620px;
+    margin: 0 auto;
+  }
+}
+
+.todo-new{
+  margin-top: 20px;
+  position: relative;
+  .fake-input{
+    position: relative;
+    background-color: $white;
+    height: 76px;
+    border: 2px solid $placeholder;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: {
+      bottom: 24px;
+    }
+    @include fontStyle($placeholder, 1.5rem);
+    span{
+      display: block;
+    }
+    &.fake-fade{
+      position: absolute;
+      z-index: -1;
+    }
+    .add-icon{
+      width: 20px;
+      height: 20px;
+      margin: {
+        left: 33px;
+        right: 14px;
+      }
+      position: relative;
+      &::before, &::after{
+        position: absolute;
+        left: 9px;
+        content: ' ';
+        height: 20px;
+        width: 2px;
+        background-color: $placeholder;
+      }
+      &::before{
+        transform: rotate(90deg);
+      }
+    }
+  }
+  .new-expand{
+    background-color: $item-g;
+    height: 76px;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    &.expand{
+      height: 520px;
+      position: relative;
+      z-index: 10;
+      margin: {
+        bottom: 24px;
+      }
+    }
+    .new-input{
+      height: 76px;
+      padding: 0 32px;
+      .complete {
+        display: block;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border-radius: 2px;
+        background-color: $white;
+        margin: {
+          right: 16px;
+        }
+      }
+      .tick {
+        display: none;
+        &:checked+.complete {
+          &::before {
+            content: ' ';
+            height: 8px;
+            width: 14px;
+            position: absolute;
+            border: {
+              left: 2px solid $white;
+              bottom: 2px solid $white;
+            }
+            bottom: 10px;
+            left: 6px;
+            z-index: 2;
+            transform: rotate(-45deg);
+          }
+          &::after {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: $light-blue;
+          }
+        }
+      }
+      .text-input {
+        height: 28px;
+        width: 400px;
+        margin: {
+          right: auto;
+        }
+        background-color: $item-g;
+        @include fontStyle($black, 1.5rem, 500);
+        &::placeholder {
+          @include fontStyle($placeholder, 1.5rem, 500)
+        }
+      }
+      .tick:checked ~ .text-input{
+        color: $font-check;
+        text-decoration: line-through;
+      }
+      .fa-star{
+        margin: {
+          right: 32px;
+        }
+        cursor: pointer;
+      }
+      .fas.fa-star{
+        color: $star;
+      }
+      .fa-edit{
+        color: $light-blue;
+        cursor: pointer;
+      }
+    }
+    .new-memory{
+      border-top: 3px solid $placeholder;
+      padding: 24px 78px 24px 96px;
+      .memory-grid{
+        position: relative;
+        margin-bottom: 25px;
+        p{
+          @include fontStyle($black, 1.25rem, 500);
+          margin-bottom: 9px;
+          position: relative;
+          i{
+            position: absolute;
+            left: -30px;
+          }
+        }
+        &:last-child{
+          margin-bottom: 0; 
+        }
+        .new-date, .new-time {
+          width: 162px;
+          height: 35px;
+          border-radius: 2px;
+          padding: 0 10px;
+          margin-right: 8px;
+          @include fontStyle($black, 1rem);
+          &::placeholder{
+            color: $placeholder;
+          }
+          &:focus{
+            outline: -webkit-focus-ring-color auto 5px;
+          }
+        }
+        input[type="file"]{
+          display: none;
+        }
+        .new-addfile{
+          display: block;
+          position: relative;
+          width: 32px;
+          height: 32px;
+          background-color: $placeholder;
+          border-radius: 2px;
+          cursor: pointer;
+          &::before, &::after{
+            content: ' ';
+            position: absolute;
+            background-color: #fff;
+            width: 2px;
+            height: 10px;
+            left: 15px;
+            top: 11px;
+            z-index: 2;
+          }
+          &::after{
+            transform: rotate(90deg);
+          }
+        }
+        .new-comment{
+          border: none;
+          resize: none;
+          width: 445px;
+          min-height: 120px;
+          border-radius: 2px;
+          padding: 8px 16px;
+          @include fontStyle($black, 1.25rem);
+          &::placeholder{
+            @include fontStyle($placeholder, 1.25rem);
+          }
+        }
+      }
+    }
+    .new-button{
+      width: 100%;
+      height: 60px;
+      margin-top: 6px;
+      button{
+        width: 50%;
+        height: 60px;
+        border: none;
+        cursor: pointer;
+        &:focus{
+          outline: 0;
+        }
+      }
+      .new-cancel{
+        @include fontStyle($cancel, 1.5rem);
+        background-color: $white;
+        span{
+          display: block;
+        }
+        .symbol{
+          width: 16px;
+          height: 16px;
+          transform: rotate(45deg);
+          margin-right: 10px;
+          position: relative;
+          &::before, &::after{
+            content: ' ';
+            position: absolute;
+            width: 2px;
+            height: 16px;
+            left: 7px;
+            background-color: $cancel;
+            z-index: 2;
+          }
+          &::after{
+            transform: rotate(90deg);
+          }
+        }
+      }
+      .new-addTask{
+        @include fontStyle($white, 1.5rem);
+        background-color: $light-blue;
+        span{
+          display: block;
+        }
+        .symbol{
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+          position: relative;
+          &::before, &::after{
+            content: ' ';
+            position: absolute;
+            width: 2px;
+            height: 16px;
+            left: 7px;
+            background-color: $white;
+            z-index: 2;
+          }
+          &::after{
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+.todo-queue{
+  height: 100px;
+  background-color: red;
+}
+
+.addup{
+  @include fontStyle($placeholder, 1.5rem, 400, italic);
+  padding-left: 30px;
+}

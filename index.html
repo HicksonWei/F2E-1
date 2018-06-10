@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div id="app" class="wrap">
+    <div class="sort d-flex jc-cr">
+      <input type="radio" name="sort" id="allTasks" checked>
+      <label for="allTasks" class="d-flex jc-cr ai-cr">My Tasks</label>
+      <input type="radio" name="sort" id="inProgressTasks">
+      <label for="inProgressTasks" class="d-flex jc-cr ai-cr">In Progress</label>
+      <input type="radio" name="sort" id="completeTasks">
+      <label for="completeTasks" class="d-flex jc-cr ai-cr">Completed</label>
+    </div>
+    <main>
+      <div class="container d-flex flex-column">
+        <div class="todo-new">
+          <div :class="fakeFade" @click="toggle = !toggle">
+            <span class="add-icon"></span>
+            <span>Add Task</span>
+          </div>
+          <div :class="inputExpand">
+            <div class="new-input d-flex ai-cr" :style="bgColor">
+              <input type="checkbox" id="check" class="tick">
+              <label for="check" class="complete"></label>
+              <input type="text" class="text-input" placeholder="Type Something Here..." :style="bgColor">
+              <i :class="star" @click="important = !important"></i>
+              <i class="fas fa-edit fa-lg" @click="toggle = !toggle"></i>
+            </div>
+            <div class="new-memory">
+              <div class="memory-grid">
+                <p>
+                  <i class="far fa-calendar-alt fa-fw"></i>
+                  Deadline
+                </p>
+                <div>
+                  <input type="text" class="new-date" placeholder="yyyy/mm/dd">
+                  <input type="text" class="new-time" placeholder="hh:mm">
+                </div>
+              </div>
+              <div class="memory-grid">
+                <p>
+                  <i class="far fa-file fa-fw"></i>
+                  File
+                </p>
+                <input type="file" id="addFile">
+                <label for="addFile" class="new-addfile"></label>
+              </div>
+              <div class="memory-grid">
+                <p>
+                  <i class="far fa-comment-dots fa-fw"></i>
+                  Comment
+                </p>
+                <textarea class="new-comment" placeholder="Type your memo here..."></textarea>
+              </div>
+            </div>
+            <div class="new-button d-flex">
+              <button class="new-cancel d-flex ai-cr jc-cr" @click="toggle = !toggle">
+                <span class="symbol"></span>
+                <span>Cancel</span>
+              </button>
+              <button class="new-addTask d-flex ai-cr jc-cr">
+                <span class="symbol"></span>
+                <span>Add Task</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="todo-queue">
+
+        </div> -->
+        <p class="addup">0 tasks left</p>
+      </div>
+    </main>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
+  <script src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.16.0/vuedraggable.min.js"></script>
+  <script src="./js/all.js"></script>
+</body>
+
+</html>

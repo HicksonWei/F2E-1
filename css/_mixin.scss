@@ -1,0 +1,15 @@
+@mixin color($color) {
+  color: $color;
+}
+
+@mixin fontStyle($color: #000, $size: 1rem, $weight: 400, $style: normal) {
+  font: {
+    family: 'Roboto', 'Microsoft JhengHei', sans-serif;
+    weight: $weight;
+    size: $size;
+    style: $style;
+  }
+  @include color($color);
+}
+
+
